@@ -1,15 +1,17 @@
-var React = require('react-native');
-var Badge = require('./Badge');
-var Separator = require('./Helpers/Separator');
+import React,{ Component } from 'react';
+import {
+	View,
+	Text,
+	StyleSheet,
+	Image,
+	ScrollView,
+	TouchableHighlight,
+	ActivityIndicatorIOS
+} from 'react-native';
+import Badge from './Badge';
+import Separator from './Helpers/Separator';
 
-var {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView
-} = React;
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1
   },
@@ -30,14 +32,14 @@ var styles = StyleSheet.create({
   }
 });
 
-class Profile extends React.Component{
+export default class Profile extends React.Component{
   getRowTitle(user, item){
     item = (item === 'public_repos') ? item.replace('_', ' ') : item;
     return item[0] ? item[0].toUpperCase() + item.slice(1) : item;
   }
   render(){
-    var userInfo = this.props.userInfo;
-    var topicArr = ['company', 'location', 'followers', 'following', 'email', 'bio', 'public_repos'];
+    const userInfo = this.props.userInfo;
+    const topicArr = ['company', 'location', 'followers', 'following', 'email', 'bio', 'public_repos'];
     var list = topicArr.map((item, index) => {
       if(!userInfo[item]){
         return <View key={index}/>
@@ -45,7 +47,7 @@ class Profile extends React.Component{
         return (
           <View key={index}>
             <View style={styles.rowContainer}>
-              <Text style={styles.rowTitle}>{this.getRowTitle(userInfo, item)}</Text>
+              <Text style={styles.rowTitle}> {this.getRowTitle(userInfo, item)} </Text>
               <Text style={styles.rowContent}> {userInfo[item]} </Text>
             </View>
             <Separator />
@@ -65,5 +67,3 @@ class Profile extends React.Component{
 Profile.propTypes = {
   userInfo: React.PropTypes.object.isRequired
 }
-
-module.exports = Profile;

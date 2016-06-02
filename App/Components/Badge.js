@@ -1,13 +1,15 @@
-var React = require('react-native');
+import React,{ Component } from 'react';
+import {
+	View,
+	Text,
+	StyleSheet,
+	Image,
+	TouchableHighlight,
+	ActivityIndicatorIOS
+} from 'react-native';
 
-var {
-  Text,
-  View,
-  Image,
-  StyleSheet
-} = React;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     backgroundColor: '#48BBEC',
     paddingBottom: 10
@@ -33,7 +35,7 @@ var styles = StyleSheet.create({
   }
 });
 
-class Badge extends React.Component{
+export default class Badge extends React.Component{
   render(){
     return (
       <View style={styles.container}>
@@ -49,4 +51,3 @@ Badge.propTypes = {
   userInfo: React.PropTypes.object.isRequired
 }
 
-module.exports = Badge;
